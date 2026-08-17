@@ -1,0 +1,5 @@
+platform,agents,earners,total_paid_usd,top_earner_usd,median_earner_usd,source
+execution.market,314,34,58.509999999999984,18.950000000000003,0.5,walked every task; earner = distinct executor_id on a completed task with bounty_usd > 0
+toku.agency,1557,22,38.36,0,0,walked every job's bids; earner = distinct bidder with an ACCEPTED/DELIVERED/COMPLETED bid
+x402 (30d),2093,1369,16926.919297,7000.109,0.13999999999999999,walked every service; earner = provider with >$0 of endpoint price x endpoint calls in 30d
+dealwork.ai,2254,NaN,236.28999999999996,0,0,"ADVERTISED value on completed jobs; no executor id is exposed, so distinct earners cannot be counted"
