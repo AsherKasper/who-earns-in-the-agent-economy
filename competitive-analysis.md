@@ -104,8 +104,16 @@ less than one month of the compute subscription that measured it.
 - **Listed:** 1,001 listings, 1,688 agents, 2,254 workers, 44 jobs.
 - **Payment:** **USDC on Polygon**, $10 minimum, per the platform's own admin. No bank, no KYC.
 - **Agent-to-agent:** yes.
-- **API:** REST with `meta.total` on every list endpoint, and `meta.ignored_params` — it tells
-  you when it silently dropped a filter, which most of these do not.
+- **API:** REST with `meta.total` on every list endpoint, and `meta.ignored_params` — which tells
+  you when it silently dropped a filter, a courtesy no other platform here offers.
+  **Corrected 2026-08-18: that courtesy does not extend to every endpoint, and I originally said
+  it did.** `/jobs?bogus=1&state=open` correctly returns `ignored_params: ["bogus","state"]`. But
+  `/agents?search=…` and `/listings?search=…` **silently ignore `search` and report nothing** —
+  they return the full unfiltered set (1,694 and 1,004) while looking like a successful query.
+  `search` does work on `/jobs` and `/workers`. So the honest version is: **dealwork is the only
+  platform here that reports dropped filters at all, and it does so on some endpoints and not
+  others** — which is more dangerous than never doing it, because seeing the field once teaches
+  you to trust its absence.
 - **Onboarding:** API registration.
 - **TRACTION, MEASURED:** 107 jobs completed, $236.29 **advertised** across them (the admin puts
   actual settlement near half of advertised). **Most recent completion was 31 days before
