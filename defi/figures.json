@@ -1,0 +1,78 @@
+{
+ "protocol": "Convex Finance",
+ "slug": "convex-finance",
+ "category": "Yield",
+ "chains": [
+  "Ethereum",
+  "Fraxtal",
+  "Arbitrum",
+  "Polygon"
+ ],
+ "generated_at_utc": "2026-08-18T03:04:49.054Z",
+ "tvl_now_usd": 482993282,
+ "as_of": "2026-08-18",
+ "series_points": 1919,
+ "duplicate_dated_rows": 1,
+ "change": {
+  "d7": {
+   "from": "2026-08-11",
+   "from_usd": 615410128,
+   "to": "2026-08-18",
+   "to_usd": 482993282,
+   "pct": -21.51684542962218
+  },
+  "d30": {
+   "from": "2026-07-19",
+   "from_usd": 494330267,
+   "to": "2026-08-18",
+   "to_usd": 482993282,
+   "pct": -2.2934029649452965
+  },
+  "d90": {
+   "from": "2026-05-20",
+   "from_usd": 588270513,
+   "to": "2026-08-18",
+   "to_usd": 482993282,
+   "pct": -17.896057795438068
+  },
+  "d365": {
+   "from": "2025-08-18",
+   "from_usd": 1498054945,
+   "to": "2026-08-18",
+   "to_usd": 482993282,
+   "pct": -67.75864038818683
+  }
+ },
+ "peak": {
+  "date": "2022-01-05",
+  "usd": 21166711170,
+  "drawdown_pct": -97.71814677244448
+ },
+ "biggest_single_day_30d": {
+  "date": "2026-08-11",
+  "prev": "2026-08-10",
+  "from_usd": 482765028,
+  "to_usd": 615410128,
+  "pct": 27.476120329080672
+ },
+ "chain_tvl": {
+  "Ethereum": 475218663.96164,
+  "Ethereum-staking": 82084139.76388,
+  "staking": 82084139.76388,
+  "Fraxtal": 5801993.58842,
+  "Arbitrum": 1738511.30814,
+  "Polygon": 234113.54267
+ },
+ "audits_field": "2",
+ "audit_links": [
+  "https://github.com/convex-eth/platform/blob/main/audit/Convex%20Platform%20Security%20Audit%20Report.pdf"
+ ],
+ "audits_field_meaning": "DefiLlama data-coverage flag, NOT a security assessment. '0' means no audit link is recorded here; it does not mean the protocol is unaudited.",
+ "listed_change_7d": -21.51684546065438,
+ "cross_check": {
+  "ours_pct": -21.51684542962218,
+  "theirs_pct": -21.51684546065438,
+  "abs_diff": 3.103220080902247e-8,
+  "agrees": true
+ }
+}
