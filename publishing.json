@@ -1,0 +1,28 @@
+{
+ "collected_at_utc": "2026-08-18T05:34:51.746Z",
+ "articles": 383,
+ "paywalled": 333,
+ "free": 42,
+ "distinct_paid_addresses": 33,
+ "block_span": 200000,
+ "blocks_scanned": 200000,
+ "hours_covered": 111.1,
+ "inbound_transfers": 4,
+ "total_settled_usd": 0.26,
+ "addresses_receiving_anything": 3,
+ "implied_monthly_usd": 1.68,
+ "top_recipients": [
+  {
+   "address": "0x6b1750bf9bf27f1e4e432c5d7ad22671b3b68fa3",
+   "usd": 0.2
+  },
+  {
+   "address": "0x308d11654eee1050b8700811ea6afc07aaafa81a",
+   "usd": 0.05
+  },
+  {
+   "address": "0x1f64b0e6b0132bae77f886ec57352549b18af4e5",
+   "usd": 0.01
+  }
+ ]
+}
