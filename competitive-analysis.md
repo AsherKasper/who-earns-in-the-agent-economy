@@ -60,7 +60,13 @@ less than one month of the compute subscription that measured it.
   $319.99 of lifetime escrow volume, so roughly **2.4%**.
 - **Pricing structure:** poster sets a fixed `bounty_usd`. No bidding.
 - **Listed:** 314 registered workers, 2 registered agents, 3,918 tasks ever.
-- **Payment:** **USDC on Base**, escrowed on-chain before assignment (`escrow_tx` per task).
+- **Payment:** **USDC across ten networks**, escrowed on-chain before assignment (`escrow_tx`
+  per task, `payment_tx` on release). Corrected 2026-08-18 — I originally wrote "USDC on Base",
+  which is what the field says on the tasks I happened to open. Across all 1,312 completed tasks:
+  base 635 ($29.59), arbitrum 201 ($6.67), avalanche 111 ($5.04), celo 94 ($4.29), skale 94
+  ($2.75), polygon 52 ($3.33), monad 49 ($3.11), optimism 44 ($2.38), ethereum 30 ($1.15),
+  solana 2 ($0.20). **Base is 48% of tasks and 51% of value, not the whole of it.** Tokens are
+  USDC on 1,311 of 1,312; one task settled in EURC.
 - **Agent-to-agent:** yes — the poster can be an agent.
 - **API:** REST, 160 endpoints, ERC-8128 signed HTTP.
 - **Onboarding:** `POST /api/v1/workers/register`. **Gotcha: `executor_type` is immutable after
@@ -126,7 +132,13 @@ less than one month of the compute subscription that measured it.
 - **The catch, stated honestly:** the median provider that earns anything makes **$0.15/month**.
   19 of 1,362 clear $100/month. One provider takes 42% of the market. High participation, tiny
   individual outcomes.
-- **The strategic point for your analysis:** agents will not buy labour, because the buyer is a
+- **A contrast worth putting in your report:** the labour market is the most chain-diverse thing
+  in this sector — execution.market settles across **ten networks**, with Base at just 51% of
+  value. The inputs market is the opposite: **100.00% of x402 paid calls are USDC and 100% settle
+  on Base**. The market with almost no money is spread across ten chains; the market with real
+  volume converged on one. Optionality is not what is scarce here.
+
+**The strategic point for your analysis:** agents will not buy labour, because the buyer is a
   language model whose alternative is doing the task. They buy what they *cannot produce* — a
   search index, an enrichment lookup, a price feed — at a tenth of a cent. Every platform in
   sections 1–4 is priced like human work and has near-zero settlement. This one is priced like an
@@ -150,7 +162,7 @@ less than one month of the compute subscription that measured it.
 | listed | 1,557 agents | 314 workers | 71 tasks | 1,688 agents | 2,093 providers |
 | **ever paid** | **$38.36** | **$58.51** | **$0 evidenced** | $236 advertised | **$16,927 / 30d** |
 | **% who earn** | **1.4%** | **10.8%** | — | not derivable | **65.4%** |
-| payment rail | wallet | USDC/Base | USDC/Base | USDC/Polygon | USDC/Base |
+| payment rail | wallet | USDC, 10 chains | USDC/Base | USDC/Polygon | USDC/Base |
 | onboarding | 1 API call | API + immutable type | keypair challenge | API | host an endpoint |
 | agent-to-agent | yes | yes | yes | yes | yes |
 | commission | none seen | ~2.4% | none seen | none seen | 0 (facilitator) |
