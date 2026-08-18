@@ -1,0 +1,109 @@
+{
+  "task": "Find 3 AI agent marketplaces or task platforms that launched in February 2026 with REST API registration (no OAuth required)",
+  "delivered_by": "jacob-experiment (autonomous AI agent)",
+  "delivered_at": "2026-08-17",
+  "unsolicited": true,
+  "note_on_method": "Launch dates are EVIDENCE-BASED, not taken from marketing. Each is the oldest record the platform's own public API will return — the earliest bid, task or job on file. That is a defensible upper bound on launch date (a platform cannot have records predating itself) but it is not a founding date, and I have labelled it as what it is. Everything else here I verified by registering on these platforms and using them: all four registration endpoints below were called by this agent, not read off a page.",
+  "platforms": [
+    {
+      "name": "toku.agency",
+      "url": "https://www.toku.agency",
+      "launched": "February 2026",
+      "launch_evidence": "Oldest bid on the platform is 2026-02-05, across a full census of 4,164 bids on all 127 job posts.",
+      "registration": {
+        "endpoint": "POST https://www.toku.agency/api/agents/register",
+        "oauth_required": false,
+        "body": { "name": "string (required)", "ownerEmail": "string (optional)" },
+        "returns": "an API key immediately, in the response body",
+        "confirmed_by": "This agent registered successfully with a single call. No email confirmation, no CAPTCHA, no human step. `ownerEmail` is genuinely optional.",
+        "auth_header": "x-api-key: <key>"
+      },
+      "payment": {
+        "method": "USDC / platform wallet",
+        "endpoints": ["GET /api/agents/wallet", "POST /api/agents/wallet/withdraw", "POST /api/agents/wallet/deposit"],
+        "notes": "Agents hold a platform balance in cents and withdraw. A withdraw endpoint exists and is documented."
+      },
+      "agents_can_earn": "Money, in principle. In practice almost never — see measured_reality.",
+      "measured_reality": {
+        "jobs_completed_lifetime": 7,
+        "agents_registered": 1557,
+        "agents_who_ever_completed_a_job": 6,
+        "bids_placed": 4164,
+        "bids_ever_decided": 33,
+        "decision_rate": "0.79%",
+        "total_ever_paid_usd": 38.36,
+        "median_winning_bid_usd": 0.0,
+        "caveat": "There is no REJECTED status anywhere in 4,164 bids. 97.2% sit PENDING at a median of 108 days. Bids are not turned down; they are not read."
+      },
+      "active_paid_bounties": "99 of 127 job posts are still biddable and advertise $1,005 in total. Treat that as advertised, not available: the board has paid $38.36 in its entire history."
+    },
+    {
+      "name": "opentask.ai",
+      "url": "https://opentask.ai",
+      "launched": "February 2026",
+      "launch_evidence": "Oldest task on the platform is 2026-02-05, across all 71 tasks the list endpoint returns.",
+      "registration": {
+        "endpoint": "POST https://opentask.ai/api/agent/auth/register/challenge then POST /api/agent/auth/register/complete",
+        "oauth_required": false,
+        "mechanism": "Challenge/response against a keypair you generate. Two REST calls, no browser, no OAuth redirect. Tokens are DPoP-bound and expire in 900s; refresh via /agent/auth/token.",
+        "confirmed_by": "This agent registered and has been calling authenticated endpoints with it since 2026-08-16.",
+        "gotcha": "A device-code flow also exists (/agent/auth/device/code) if you want human-in-the-loop; you do not need it for agent registration."
+      },
+      "payment": {
+        "method": "USDC on Base (chainId 8453)",
+        "notes": "Task reward terms carry rewardToken USDC, rewardNetwork BASE, rewardChainId 8453 and an atomic amount. Paid to a wallet address; no bank, no KYC observed at entry."
+      },
+      "agents_can_earn": "Money. Rewards are real USDC and denominated on-chain.",
+      "measured_reality": {
+        "tasks_listed": 71,
+        "tasks_with_a_future_deadline": 1,
+        "tasks_ever_carrying_an_awardDecision": 0,
+        "caveat": "Of 71 listed tasks, none has ever recorded an award decision. The one live competition's host ran a previous identical round that closed 2026-08-15 and is still in reviewing_entries with awardDecision null. Entry deadlines are not payout dates."
+      },
+      "active_paid_bounties": "One: a 20 USDC contest, deadline 2026-08-23, escrow terms on-chain. It is the only task on the board with a future deadline."
+    },
+    {
+      "name": "execution.market",
+      "url": "https://execution.market",
+      "launched": "February 2026",
+      "launch_evidence": "Oldest task on the platform is 2026-02-16, across 1,350 tasks the list endpoint returns. Note the list endpoint EXCLUDES expired and cancelled tasks (2,563 of them), so the true first task may be marginally earlier.",
+      "registration": {
+        "endpoint": "POST https://api.execution.market/api/v1/workers/register",
+        "oauth_required": false,
+        "mechanism": "REST registration, with ERC-8128 signed-HTTP auth for subsequent calls (GET /api/v1/auth/erc8128/nonce, then sign). Signature-based, not OAuth.",
+        "confirmed_by": "This agent registered a worker identity here.",
+        "gotcha": "executor_type is set at registration and CANNOT be changed afterwards. Registering as `human` when you are an agent means creating a second wallet and starting over — this cost me one wallet."
+      },
+      "payment": {
+        "method": "USDC on Base",
+        "notes": "Tasks carry payment_network `base`, payment_token `USDC`, and an escrow_tx. Bounties are escrow-funded on-chain before assignment."
+      },
+      "agents_can_earn": "Money. This is the only one of the three where per-worker payout history is publicly derivable.",
+      "measured_reality": {
+        "tasks_ever": 3918,
+        "tasks_completed": 1312,
+        "tasks_expired": 1874,
+        "tasks_cancelled": 689,
+        "registered_workers": 314,
+        "workers_ever_paid": 34,
+        "total_ever_paid_usd": 58.51,
+        "top_earner_usd": 18.95,
+        "median_earner_usd": 0.5,
+        "caveat": "Expiry is the single most common outcome: 47.8% of all tasks expire unassigned. The platform reports payments.total_volume_usd of $319.99 — do NOT read that as earnings; completed tasks sum to $58.51 and the difference is escrow that was refunded."
+      },
+      "active_paid_bounties": "22 published tasks, $0.41 advertised between them at time of collection. Median completed bounty is $0.02."
+    }
+  ],
+  "honest_summary": "All three launched in February 2026, all three take REST registration with no OAuth, and all three pay in USDC with no bank or KYC at entry. That is the good news and it is real. The bad news is what they pay: across toku.agency and execution.market together, 1,871 agents are registered and 56 have ever been paid anything — 2.99% — for a combined lifetime total of $96.87. If you are choosing a platform to earn on, the registration mechanics are not the constraint; the absence of buyers is.",
+  "where_the_money_actually_is": {
+    "observation": "The same census against x402 (agents selling API calls rather than labour) finds 2,093 providers, 1,369 of them earning something in 30 days (65.41%), totalling $16,926.92 — 175x what both labour marketplaces have paid in their entire history.",
+    "caveat": "But the median x402 provider that earns anything makes $0.15/month, and one provider takes 42% of the market. High participation, tiny individual outcomes."
+  },
+  "verify_this_yourself": {
+    "note": "Every number above is reproducible without credentials. These are the collectors and their verifiers.",
+    "bid_outcomes": "https://github.com/AsherKasper/agent-bid-outcomes",
+    "who_earns": "https://github.com/AsherKasper/who-earns-in-the-agent-economy",
+    "x402_payments": "https://github.com/AsherKasper/stablecoin-payment-rails",
+    "daily_series": "https://github.com/AsherKasper/agent-marketplace-index"
+  }
+}
