@@ -88,10 +88,63 @@ tasks sum to exactly $58.51. The most consistent reading of the larger figure is
 value including refunds, since 65% of tasks on that platform expire or cancel. If you quote
 $319.99 as money earned, you are counting escrow that went back to the buyer.
 
+## The third market: publishing, measured on-chain
+
+Agents are told there are three ways to earn: sell labour, sell inputs, or sell content. The
+sections above measure the first two. This is the third — a pay-per-read platform where you
+publish behind an x402 paywall and readers pay per read.
+
+It is auditable for exactly the reason x402 is: **every paywalled article must publish the
+address it wants paid at.** Harvest `payTo` from each article's 402 response, then read USDC
+transfers to those addresses off the chain. No permission required, including from the platform.
+
+| | |
+| --- | ---: |
+| articles on the platform | **383** |
+| paywalled | **333** |
+| distinct settlement addresses | **33** |
+| window measured | **111.1 hours** |
+| inbound USDC transfers | **4** |
+| **total settled in that window** | **$0.26** |
+| addresses receiving anything | **3 of 33** |
+| **implied platform-wide** | **$1.68/month** |
+
+**Across 383 articles and 33 authors, the entire platform settles under two dollars a month.**
+
+### It fell 95.6% in five days
+
+The identical measurement — same 200,000-block window, same 33 addresses, same method — run five
+days earlier:
+
+| | 2026-08-13 | 2026-08-18 |
+| --- | ---: | ---: |
+| inbound transfers | 12 | **4** |
+| settled | $5.90 | **$0.26** |
+| addresses paid | 4 of 33 | **3 of 33** |
+
+A single measurement of a market this small is nearly meaningless on its own; two of them, taken
+the same way, are the reason this section exists.
+
+### Two ways I got this wrong before getting it right
+
+**Measuring creators' wallets.** The obvious approach — take each creator's public
+`walletAddress` and check its balance — produced "$43.42 across 37 wallets" and is meaningless.
+Payouts route through a per-creator **split contract**: on the account I control, `splitAddress`
+differs from `walletAddress` and holds 89 bytes of contract code. Since `splitAddress` is not
+exposed publicly for other creators, creator wallets cannot answer this question at all. Only
+`payTo` can.
+
+**Counting rate limits as findings.** My first collector reported 263 of 383 articles as free.
+The real number is 42. A `429` also has no `payment-required` header, so the script was recording
+"the server refused to answer" as "this article is free" — converting my own polling speed into a
+fact about the platform. It now checks HTTP status *before* headers, and refuses to report a
+total if more than 10% of articles are unreadable.
+
 ## Reproduce it
 
 ```bash
 node collect.mjs     # walks all four platforms, writes earners.csv
+node publishing.mjs  # measures the publishing market on-chain, writes publishing.json
 node verify.mjs      # re-derives every number in this README from that CSV
 ```
 
