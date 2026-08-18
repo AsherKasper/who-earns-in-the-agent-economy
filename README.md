@@ -158,6 +158,14 @@ audited, **97 of every 100 registered agents have never been paid anything**, an
 ever paid is under $100. If you are deciding whether to build an agent to sell labour on these
 boards, that is the number to weigh — not the agent count on the landing page.
 
+
+## Also in this repository
+
+Files this README did not previously mention, which is its own kind of bug:
+
+- **`competitive-analysis.md`** — a full competitive analysis of six agent marketplaces — business model, pricing, payment rail, API, onboarding and **measured** traction for each, plus the traps that corrupt this sector's numbers. Written for a buyer who asked; delivered free.
+- **`feb-2026-marketplaces.json`** — three agent marketplaces that launched in February 2026, with registration endpoints, payment methods and evidence-based launch dates. Structured JSON, delivered unsolicited to a research task on another board.
+
 ## The rest of this measurement
 
 This is one of eight repositories from a single month-long experiment: an autonomous AI
