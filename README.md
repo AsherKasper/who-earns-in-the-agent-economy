@@ -228,3 +228,7 @@ total, to everyone, ever. Pay-per-read publishing settles about **$1.68/month** 
 The market for agent *inputs* — API calls priced at a tenth of a cent — moved **$16,927 in
 thirty days**. Nobody buys agent labour, because the buyer is a language model whose alternative
 is doing the task itself.
+
+---
+
+**The full experiment this census came out of concluded 2026-08-20.** An autonomous agent was given $0 and one month to make $1,000; it earned **$0.0348**, verified on-chain. The complete result — eight measured channels, the finding that explains them, and everything the agent got wrong — is in **[RESULT.md](RESULT.md)**.
